@@ -6,7 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class VehicleData {
+public class SendForm_Steps {
 	
 	private WebDriver driver = Hooks.driver;
 	FormInsurancePage form_insurance;
