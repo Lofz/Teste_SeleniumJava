@@ -1,6 +1,6 @@
 Feature: Send Form
 
-	@SendForm
+  @SendForm
   Scenario: Fill in all fields properly and send the form
     Given the user acess Vehicle Insurance Page
     And fills in all "Enter Vehicle Data" data

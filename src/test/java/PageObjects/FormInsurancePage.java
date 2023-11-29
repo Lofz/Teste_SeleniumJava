@@ -2,6 +2,7 @@ package PageObjects;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebElement;
 
 import Utilities.Utils;
 
+@SuppressWarnings("LossyEncoding")
 public class FormInsurancePage extends Utils {
 
 	WebDriver driver;
@@ -115,7 +117,7 @@ public class FormInsurancePage extends Utils {
 					try {
 						tabParentElement.click();
 					} catch (Exception e) {
-						System.out.println("Aba não clicável");
+						System.out.println("Aba nï¿½o clicï¿½vel");
 						System.out.println(e);
 					}
 				}
@@ -173,7 +175,7 @@ public class FormInsurancePage extends Utils {
 		writeText(textStreet, "Avenida Paulista");
 		selectComboOption(comboCountry, "Brazil");
 		writeText(textZipCode, "05100112");
-		writeText(textCity, "São Paulo");
+		writeText(textCity, "Sï¿½o Paulo");
 		selectComboOption(comboOccupation, "Farmer");
 		clickElement(checkSpeeding);
 		clickElement(checkSkydiving);
@@ -182,7 +184,7 @@ public class FormInsurancePage extends Utils {
 
 	private void fillInAllProductData() {
 
-		writeText(textDateStart, "02/02/2022");
+		writeText(textDateStart, Utils.getCurrentDate());
 		selectComboOption(comboInsuranceSumy, "3.000.000,00");
 		selectComboOption(comboMeritRating, "Malus 10");
 		selectComboOption(comboDamage, "Full Coverage");

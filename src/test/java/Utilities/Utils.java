@@ -1,5 +1,6 @@
 package Utilities;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,6 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Steps.Hooks;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utils {
 
@@ -36,6 +40,12 @@ public class Utils {
     	
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
     }
+
+	public static String getCurrentDate() {
+		Date currentDate = DateUtils.addMonths(new Date(), 2);
+		SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		return df.format(currentDate);
+	}
 }
 
 

@@ -17,7 +17,7 @@ public class Hooks {
 
 	@Before
 	public void startAutomation(Scenario scenario) {
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/target/files/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("http://sampleapp.tricentis.com/101/app.php");
@@ -26,14 +26,14 @@ public class Hooks {
 	@After
 	public void embedScreenshot(Scenario scenario) {
 
-		System.setProperty("webdriver.chrome.driver", "C:/Users/Lotaif/Desktop/drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver.exe");
 		
 		if (scenario.isFailed()) {
 			File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			String[] result = scenario.getId().replace(":", "_").split("features/");
 			System.out.println(result[1]);
 			try {
-				FileUtils.copyFile(file, new File("target/screenshot/"+result[1]+".jpg"));
+				FileUtils.copyFile(file, new File("/src/test/resources/screenshots/"+result[1]+".jpg"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
