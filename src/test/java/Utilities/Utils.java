@@ -14,8 +14,8 @@ import java.util.Date;
 
 public class Utils {
 
-	private static WebDriver driver = Hooks.driver;
-	private static WebDriverWait wait = new WebDriverWait(driver, 60);
+	private WebDriver driver = Hooks.driver;
+	private WebDriverWait wait = new WebDriverWait(driver, 60);
 	
 	public void writeText(By element, String text) {
 		
