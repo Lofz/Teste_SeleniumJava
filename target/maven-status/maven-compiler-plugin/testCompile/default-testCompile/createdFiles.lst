@@ -1,5 +1,5 @@
-Steps\Hooks.class
 PageObjects\FormInsurancePage.class
 Utilities\Utils.class
 Steps\SendForm_Steps.class
+Steps\Hooks.class
 Runner.class

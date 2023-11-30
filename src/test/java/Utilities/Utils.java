@@ -41,8 +41,8 @@ public class Utils {
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
     }
 
-	public static String getCurrentDate() {
-		Date currentDate = DateUtils.addMonths(new Date(), 2);
+	public static String getCurrentDate(boolean isCorrectData) {
+		Date currentDate = isCorrectData ? DateUtils.addMonths(new Date(), 2) : new Date();
 		SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		return df.format(currentDate);
 	}

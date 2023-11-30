@@ -1,6 +1,7 @@
 package PageObjects;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,6 @@ import org.openqa.selenium.WebElement;
 
 import Utilities.Utils;
 
-@SuppressWarnings("LossyEncoding")
 public class FormInsurancePage extends Utils {
 
 	WebDriver driver;
@@ -83,6 +83,10 @@ public class FormInsurancePage extends Utils {
 	// Select Price Option Tab Locators
 	// ---Radio and CheckBoxes Elements--------------
 	By radioUltimatePlan = By.xpath("(//*[@id='selectultimate'])//parent::label");
+	// ---Image Elements------------------
+	By imgLoadingProperInfo = By.id("xLoaderPrice");
+	// ---TextField/TextArea Elements--------------
+	By textCompleteFormerSteps = By.xpath("//div[@id='xLoaderPrice']/p");
 
 	// Send Quote Tab Locators
 	// ---TextField/TextArea Elements--------------
@@ -117,15 +121,15 @@ public class FormInsurancePage extends Utils {
 					try {
 						tabParentElement.click();
 					} catch (Exception e) {
-						System.out.println("Aba n�o clic�vel");
-						System.out.println(e);
+						System.out.println("Aba não clicável");
+						e.printStackTrace();
 					}
 				}
 			}
 		}
 	}
 
-	public void fillInAllCurrentFormTab(String tabName) {
+	public void fillInAllCurrentFormTab(String tabName, boolean isCorrectData) {
 		switch (tabName) {
 		case "Enter Vehicle Data":
 			fillInAllVehicleData();
@@ -134,7 +138,7 @@ public class FormInsurancePage extends Utils {
 			fillInAllInsurantData();
 			break;
 		case "Enter Product Data":
-			fillInAllProductData();
+			fillInAllProductData(isCorrectData);
 			break;
 		case "Select Price Option":
 			fillInAllPriceOption();
@@ -182,9 +186,9 @@ public class FormInsurancePage extends Utils {
 		writeText(textWebsite, "www.google.com");
 	}
 
-	private void fillInAllProductData() {
+	private void fillInAllProductData(boolean isCorrectData) {
 
-		writeText(textDateStart, Utils.getCurrentDate());
+		writeText(textDateStart, Utils.getCurrentDate(isCorrectData));
 		selectComboOption(comboInsuranceSumy, "3.000.000,00");
 		selectComboOption(comboMeritRating, "Malus 10");
 		selectComboOption(comboDamage, "Full Coverage");
@@ -219,5 +223,13 @@ public class FormInsurancePage extends Utils {
 
 		String success_message = driver.findElement(sucessHeaderMessage).getText();
 		assertEquals(success_message, "Sending e-mail success!");
+	}
+
+	public void validateLoadingImage() {
+
+		WaitUntilElementVisible(imgLoadingProperInfo);
+
+		String loading_message = driver.findElement(textCompleteFormerSteps).getText();
+		assertTrue(loading_message.contains("Please, complete"));
 	}
 }
